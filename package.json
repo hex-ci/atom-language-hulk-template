@@ -1,0 +1,16 @@
+{
+  "name": "language-hulk-template",
+  "version": "0.0.0",
+  "description": "Hulk Template language package for Atom",
+  "keywords": [
+    "hulk",
+    "template",
+    "language",
+    "grammar"
+  ],
+  "repository": "https://github.com/hex-ci/atom-language-hulk-template",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=2.0.0"
+  }
+}

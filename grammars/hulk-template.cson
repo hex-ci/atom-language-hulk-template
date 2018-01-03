@@ -1,0 +1,82 @@
+# If this is your first time writing a language grammar, check out:
+#   - https://flight-manual.atom.io/hacking-atom/sections/creating-a-grammar/
+
+'scopeName': 'text.html.php.hulk'
+'name': 'HulkTemplate'
+'fileTypes': [
+  't.php'
+]
+'patterns': [
+  {
+    'begin': '(?i)(<#\\s*/?)(extends|block|slot|use|call)(?:\\s+([^#= ]+)|\\s*)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.tag.begin.html'
+      '2':
+        'name': 'keyword.hulk.$2'
+      '3':
+        'name': 'entity.other.attribute-name.html'
+    'contentName': 'text.html'
+    'end': '(#>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.tag.end.html'
+    'name': 'html.hulk.tag'
+    'patterns': [
+      {
+        'match': '(\\S+)\\s*(=)\\s*(")([^"]+)(")'
+        'captures':
+          '1':
+            'name': 'entity.other.attribute-name.html'
+          '2':
+            'name': 'punctuation.separator.key-value'
+          '3':
+            'name': 'punctuation.definition.string.begin'
+          '5':
+            'name': 'punctuation.definition.string.end'
+        'name': 'string'
+      }
+    ]
+  }
+  {
+    'begin': '<\\?(?i:php|=)?(?![^?]*\\?>)'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.begin.php'
+    'end': '(\\?)>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.end.php'
+      '1':
+        'name': 'source.php'
+    'name': 'meta.embedded.block.php'
+    'contentName': 'source.php'
+    'patterns': [
+      {
+        'include': 'source.php'
+      }
+    ]
+  }
+  {
+    'begin': '<\\?(?i:php|=)?'
+    'beginCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.begin.php'
+    'end': '(\\?)>'
+    'endCaptures':
+      '0':
+        'name': 'punctuation.section.embedded.end.php'
+      '1':
+        'name': 'source.php'
+    'name': 'meta.embedded.line.php'
+    'contentName': 'source.php'
+    'patterns': [
+      {
+        'include': 'source.php'
+      }
+    ]
+  }
+  {
+    'include': 'text.html.basic'
+  }
+]

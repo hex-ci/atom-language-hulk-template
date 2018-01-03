@@ -1,0 +1,7 @@
+# If you want some example snippets, check out:
+# https://github.com/atom/language-javascript/blob/master/snippets/javascript.cson
+
+'.text.html.php.hulk':
+  'Block tag':
+    'prefix': 'block'
+    'body': '<# block $1 #>$2<# /block #>'
