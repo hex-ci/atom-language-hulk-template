@@ -1,2 +1,5 @@
-# atom-language-hulk-template
-Hulk Template language package for Atom
+# Hulk template language support in Atom
+
+Adds syntax highlighting and snippets to Hulk template files in Atom.
+
+Contributions are greatly appreciated. Please fork this repository and open a pull request to add snippets, make grammar tweaks, etc.
