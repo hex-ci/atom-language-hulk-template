@@ -11,6 +11,6 @@
   "repository": "https://github.com/hex-ci/atom-language-hulk-template",
   "license": "MIT",
   "engines": {
-    "atom": ">=2.0.0"
+    "atom": ">=1.0.0"
   }
 }
