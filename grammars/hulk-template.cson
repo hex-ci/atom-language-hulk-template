@@ -6,25 +6,48 @@
 'fileTypes': [
   't.php'
 ]
+'injections':
+  'text.html.php.hulk - (meta.embedded | meta.tag), L:text.html.php.hulk meta.tag, L:source.js.embedded.html':
+    'patterns': [
+      {
+        'include': '#php-tag'
+      }
+    ]
 'patterns': [
   {
-    'begin': '(?i)(<#\\s*/?)(extends|block|slot|use|call)(?:\\s+([^#= ]+)|\\s*)'
+    'begin': '(?i)(<#\\s*)(extends)\\s+([^#=\\s]+)'
     'beginCaptures':
       '1':
-        'name': 'punctuation.tag.begin.html'
+        'name': 'punctuation.tag.begin.html.$2'
       '2':
         'name': 'keyword.hulk.$2'
       '3':
-        'name': 'support.function'
-    'contentName': 'text.html'
+        'name': 'entity.name.class.hulk.$2'
+    'contentName': 'text.html.hulk.$2'
     'end': '(#>)'
     'endCaptures':
       '1':
-        'name': 'punctuation.tag.end.html'
-    'name': 'html.hulk.tag'
+        'name': 'punctuation.tag.end.html.$2'
+    'name': 'html.hulk.tag.$2'
+  }
+  {
+    'begin': '(?i)(<#\\s*/?)(block|slot|use|call)(?:\\s+([^#=\\s]+)|\\s*)'
+    'beginCaptures':
+      '1':
+        'name': 'punctuation.tag.begin.html.$2'
+      '2':
+        'name': 'keyword.hulk.$2'
+      '3':
+        'name': 'support.function.$2'
+    'contentName': 'text.html.hulk.$2'
+    'end': '(#>)'
+    'endCaptures':
+      '1':
+        'name': 'punctuation.tag.end.html.$2'
+    'name': 'html.hulk.tag.$2'
     'patterns': [
       {
-        'match': '(\\S+)\\s*(=)\\s*(")([^"]+)(")'
+        'match': '([^=\\s]+)\\s*(=)\\s*(")([^"]+)(")'
         'captures':
           '1':
             'name': 'entity.other.attribute-name.html'
@@ -32,47 +55,15 @@
             'name': 'punctuation.separator.key-value'
           '3':
             'name': 'punctuation.definition.string.begin'
+          '4':
+            'patterns': [
+              {
+                'include': '#php-tag'
+              }
+            ]
           '5':
             'name': 'punctuation.definition.string.end'
-        'name': 'string'
-      }
-    ]
-  }
-  {
-    'begin': '<\\?(?i:php|=)?(?![^?]*\\?>)'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.section.embedded.begin.php'
-    'end': '(\\?)>'
-    'endCaptures':
-      '0':
-        'name': 'punctuation.section.embedded.end.php'
-      '1':
-        'name': 'source.php'
-    'name': 'meta.embedded.block.php'
-    'contentName': 'source.php'
-    'patterns': [
-      {
-        'include': 'source.php'
-      }
-    ]
-  }
-  {
-    'begin': '<\\?(?i:php|=)?'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.section.embedded.begin.php'
-    'end': '(\\?)>'
-    'endCaptures':
-      '0':
-        'name': 'punctuation.section.embedded.end.php'
-      '1':
-        'name': 'source.php'
-    'name': 'meta.embedded.line.php'
-    'contentName': 'source.php'
-    'patterns': [
-      {
-        'include': 'source.php'
+        'name': 'html.hulk.string'
       }
     ]
   }
@@ -80,3 +71,45 @@
     'include': 'text.html.basic'
   }
 ]
+'repository':
+  'php-tag':
+    'patterns': [
+      {
+        'begin': '<\\?(?i:php|=)?(?![^?]*\\?>)'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.section.embedded.begin.php'
+        'end': '(\\?)>'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.section.embedded.end.php'
+          '1':
+            'name': 'source.php'
+        'name': 'meta.embedded.block.php'
+        'contentName': 'source.php'
+        'patterns': [
+          {
+            'include': 'source.php'
+          }
+        ]
+      }
+      {
+        'begin': '<\\?(?i:php|=)?'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.section.embedded.begin.php'
+        'end': '(\\?)>'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.section.embedded.end.php'
+          '1':
+            'name': 'source.php'
+        'name': 'meta.embedded.line.php'
+        'contentName': 'source.php'
+        'patterns': [
+          {
+            'include': 'source.php'
+          }
+        ]
+      }
+    ]
