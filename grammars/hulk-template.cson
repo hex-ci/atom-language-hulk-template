@@ -68,6 +68,9 @@
     ]
   }
   {
+    'include': '#style-tag'
+  }
+  {
     'include': 'text.html.basic'
   }
 ]
@@ -109,6 +112,79 @@
         'patterns': [
           {
             'include': 'source.php'
+          }
+        ]
+      }
+    ]
+  'style-tag':
+    'patterns': [
+      {
+        name: "meta.tag.block.style.html"
+        begin: '(?i)(<)\\s*(style)\\s+(type)\\s*(=)\\s*(")\\s*(text/scss)\\s*(")\\s*(>)'
+        beginCaptures:
+          '1':
+            'name': 'punctuation.definition.tag.begin.html'
+          '2':
+            'name': 'entity.name.tag.block.style.html'
+          '3':
+            'name': 'entity.other.attribute-name.type.html'
+          '4':
+            'name': 'punctuation.separator.key-value.html'
+          '5':
+            'name': 'punctuation.definition.string.begin.html'
+          '6':
+            'name': 'string.quoted.double.html'
+          '7':
+            'name': 'punctuation.definition.string.end.html'
+          '8':
+            'name': 'punctuation.definition.tag.end.html'
+        end: "(?i)(</)\\s*(style)\\s*(>)"
+        endCaptures:
+          '1':
+            'name': 'punctuation.definition.tag.begin.html'
+          '2':
+            'name': 'entity.name.tag.block.style.html'
+          '3':
+            'name': 'punctuation.definition.tag.end.html'
+        contentName: 'source.css.scss'
+        patterns: [
+          {
+            'include': 'source.css.scss'
+          }
+        ]
+      }
+      {
+        name: "meta.tag.block.style.html"
+        begin: '(?i)(<)\\s*(style)\\s+(type)\\s*(=)\\s*(")\\s*(text/sass)\\s*(")\\s*(>)'
+        beginCaptures:
+          '1':
+            'name': 'punctuation.definition.tag.begin.html'
+          '2':
+            'name': 'entity.name.tag.block.style.html'
+          '3':
+            'name': 'entity.other.attribute-name.type.html'
+          '4':
+            'name': 'punctuation.separator.key-value.html'
+          '5':
+            'name': 'punctuation.definition.string.begin.html'
+          '6':
+            'name': 'string.quoted.double.html'
+          '7':
+            'name': 'punctuation.definition.string.end.html'
+          '8':
+            'name': 'punctuation.definition.tag.end.html'
+        end: "(?i)(</)\\s*(style)\\s*(>)"
+        endCaptures:
+          '1':
+            'name': 'punctuation.definition.tag.begin.html'
+          '2':
+            'name': 'entity.name.tag.block.style.html'
+          '3':
+            'name': 'punctuation.definition.tag.end.html'
+        contentName: 'source.sass'
+        patterns: [
+          {
+            'include': 'source.sass'
           }
         ]
       }
